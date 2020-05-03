@@ -7,7 +7,7 @@ public class Result {
     private final SimpleStringProperty deaths = new SimpleStringProperty("");
     private final SimpleStringProperty recovered = new SimpleStringProperty("");
 
-    public Result() { this("","","",""); };
+    public Result() { this("","","",""); }
 
     public Result(String date, String confirmed, String deaths, String recovered) {
         setDate(date);
