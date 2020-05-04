@@ -2,34 +2,29 @@ package CoronaStat;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Result {
-    private final SimpleStringProperty date = new SimpleStringProperty("");
-    private final SimpleStringProperty confirmed = new SimpleStringProperty("");
-    private final SimpleStringProperty deaths = new SimpleStringProperty("");
-    private final SimpleStringProperty recovered = new SimpleStringProperty("");
+    private SimpleStringProperty date = new SimpleStringProperty("");
+    private int confirmed;
+    private int deaths;
+    private int recovered;
 
-    public Result() { this("","","",""); };
+    public Result() { this("",0,0,0); }
 
-    public Result(String date, String confirmed, String deaths, String recovered) {
+    public Result(String date, int confirmed, int deaths, int recovered) {
         setDate(date);
         setConfirmed(confirmed);
         setDeaths(deaths);
         setRecovered(recovered);
-
     }
 
+    // Gettery
     public String getDate() { return date.get(); }
+    public int getConfirmed() { return confirmed; }
+    public int getDeaths() { return deaths; }
+    public int getRecovered() { return recovered; }
 
+    // Settery
     public void setDate(String date) { this.date.set(date); }
-
-    public String getConfirmed() { return confirmed.get(); }
-
-    public void setConfirmed(String confirmed) { this.confirmed.set(confirmed); }
-
-    public String getDeaths() { return deaths.get(); }
-
-    public void setDeaths(String deaths) { this.deaths.set(deaths); }
-
-    public String getRecovered() { return recovered.get(); }
-
-    public void setRecovered(String recovered) { this.recovered.set(recovered); }
+    public void setConfirmed(int confirmed) { this.confirmed=confirmed; }
+    public void setDeaths(int deaths) { this.deaths=deaths; }
+    public void setRecovered(int recovered) { this.recovered=recovered; }
 }
