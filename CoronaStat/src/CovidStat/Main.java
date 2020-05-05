@@ -1,4 +1,4 @@
-package CoronaStat;
+package CovidStat;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,14 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("coronaStat.fxml"));
-        primaryStage.setTitle("CoronaStat");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        Parent root = FXMLLoader.load(getClass().getResource("covidStat.fxml"));
+        root.getStylesheets().addAll(this.getClass().getResource("stylesheet.css").toExternalForm());
+        root.setId("pane");
+        primaryStage.setTitle("Covid Statistics");
+        primaryStage.setScene(new Scene(root, 1000, 500));
         primaryStage.show();
+
     }
 
 
