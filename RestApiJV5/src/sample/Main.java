@@ -1,4 +1,4 @@
-package CoronaStat;
+package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("coronaStat.fxml"));
-        primaryStage.setTitle("CoronaStat");
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("COVID Stat");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
