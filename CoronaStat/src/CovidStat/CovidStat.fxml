@@ -34,7 +34,7 @@
         <TextField fx:id="countryField" promptText="Country" prefWidth="150" style="-fx-font-weight: bold"/>
         <TextField fx:id="month" promptText="Month" prefWidth="150" style="-fx-font-weight: bold"/>
         <TextField fx:id="day" promptText="Day" prefWidth="150" style="-fx-font-weight: bold"/>
-        <Label fx:id="toDate" text="This Day" textFill="whitesmoke" style="-fx-font-weight: bold; -fx-font-size: 12"/>
         <Button text="Update" onAction="#updatePerson" style="-fx-font-weight: bold; -fx-border-radius: 50;" />
+        <Label fx:id="toDate" text="This Day" textFill="black" style="-fx-font-weight: bold; -fx-font-size: 12"/>
     </HBox>
 </GridPane>

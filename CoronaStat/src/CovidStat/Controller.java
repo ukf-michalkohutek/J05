@@ -115,6 +115,7 @@ public class Controller {
                     .thenApply(Controller::globalParse)
                     .join();
             toDate.setText(s);
+            for (Result r : temp) addResult(r);
         }
         else {
             for (String countryCode : locales) {
