@@ -1,35 +1,31 @@
 package CoronaStat;
+
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleLongProperty;
 
 public class Result {
     private final SimpleStringProperty date = new SimpleStringProperty("");
-    private final SimpleStringProperty confirmed = new SimpleStringProperty("");
-    private final SimpleStringProperty deaths = new SimpleStringProperty("");
-    private final SimpleStringProperty recovered = new SimpleStringProperty("");
+    private final SimpleLongProperty confirmed = new SimpleLongProperty();
+    private final SimpleLongProperty deaths = new SimpleLongProperty();
+    private final SimpleLongProperty recovered = new SimpleLongProperty();
 
-    public Result() { this("","","",""); };
-
-    public Result(String date, String confirmed, String deaths, String recovered) {
+    public Result(String date, long confirmed, long deaths, long recovered){
         setDate(date);
         setConfirmed(confirmed);
         setDeaths(deaths);
         setRecovered(recovered);
-
     }
 
-    public String getDate() { return date.get(); }
+    //setters
+    public void setDate(String date) {this.date.set(date);}
+    public void setConfirmed(long confirmed) {this.confirmed.set(confirmed);}
+    public void setDeaths(long deaths) {this.deaths.set(deaths);}
+    public void setRecovered(long recovered) {this.recovered.set(recovered);}
 
-    public void setDate(String date) { this.date.set(date); }
+    //getters
+    public String getDate(){return this.date.get();}
+    public long getConfirmed(){return this.confirmed.get();}
+    public long getDeaths(){return this.deaths.get();}
+    public long getRecovered(){return this.recovered.get();}
 
-    public String getConfirmed() { return confirmed.get(); }
-
-    public void setConfirmed(String confirmed) { this.confirmed.set(confirmed); }
-
-    public String getDeaths() { return deaths.get(); }
-
-    public void setDeaths(String deaths) { this.deaths.set(deaths); }
-
-    public String getRecovered() { return recovered.get(); }
-
-    public void setRecovered(String recovered) { this.recovered.set(recovered); }
 }
