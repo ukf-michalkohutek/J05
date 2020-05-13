@@ -103,39 +103,29 @@ public class Controller {
 
         Parser parserString = new Parser(this.CommandPane.getText());
 
-        /*  Skontrolujem ci je krajina zadana celym nazvom alebo Aplha-3 kodom (iba 3 velke znaky):
-            podla toho vytvorim link.
-            Ak je to kod krajiny tak poslem dotaz na stranku ktora mi vrati nazov krajiny.
-            Stranka https://restcountries.eu/#api-endpoints-calling-code odkial zo zadanej krajiny ziskam jej alpha3 reprezentaciu
-         */
+
         String country = parserString.getCountry();
 
-        // Ak parsovanie cez regex nepreslo tak sa nic nezobrazi
+
         if (country == null) {
             return;
         }
 
         String date = null;
 
-        /*  Ak nepresiel regex na datum tak vsetky grupy na datum budu null cize mi staci
-            okontrolovat ci je rok null. Inak ak null neni tak vytvorim datum format (YYYY-MM-DD) ktory
-            potom prida do linku
-         */
+
         if (parserString.getYear() != null) {
             date = parserString.getYear() + "-" + parserString.getMonth() + "-" + parserString.getDay();
         }
 
-        /*  Ak je krajina zadana celym nazvom tak sa musi ziskat jej alpha3code format lebo tak
-            funguje covid stranka. Ak je krajina zadana ako skratka tak sa prost pride do link premennej
-            ktora sa zavola.
-         */
+
         if (country.length() != 3) {
             this.getCountryFullName(country);
         }else {
             link = "https://covidapi.info/api/v1/country/" + country ;
         }
 
-        // Ak datum neni null tak sa prida datum do linku
+
         if (date != null) {
             link += "/" + date;
         }
@@ -146,7 +136,7 @@ public class Controller {
 
     private void getCountryFullName(String fullName) {
 
-        // Nedokonceny link
+
         String startLink = "https://restcountries.eu/rest/v2/name/";
 
         HttpClient client2 = HttpClient.newHttpClient();
@@ -169,17 +159,17 @@ public class Controller {
 
         JSONArray results = new JSONArray(responseString);
 
-        // V Json formate si najdem iba alpha3code a mam vybavene
+
         String obj = results.getJSONObject(0).get("alpha3Code").toString();
 
-        // Finalny link ktory sa potom zavola
+
         link = "https://covidapi.info/api/v1/country/" + obj;
 
         return null;
 
     }
 
-    // Pomocka ako zadavat prikaz do prikazoveho riadku
+
     public void getHelp(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
