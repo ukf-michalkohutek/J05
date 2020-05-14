@@ -6,8 +6,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <GridPane fx:controller="CoronaStat.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
 
     <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
@@ -30,4 +35,13 @@
         </columns>
     </TableView>
 
+    <VBox spacing = "20" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <HBox spacing = "20" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <TextField fx:id="countryField" promptText="Country" prefWidth="150"/>
+            <TextField fx:id="dateField" promptText="DD-MM-RR" prefWidth="150"/>
+            <Button text="Find Date" onAction="#find" />
+        </HBox>
+        <Label>Country -> ISO 3166 Alpha-3 or name (Anything else shows global statistics)</Label>
+        <Label>Date -> Format: YYYY-MM-DD (Anything else shows all data from country/world)</Label>
+    </VBox>
 </GridPane>
