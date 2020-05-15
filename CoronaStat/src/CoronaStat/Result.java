@@ -1,4 +1,5 @@
 package CoronaStat;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class Result {
@@ -7,29 +8,62 @@ public class Result {
     private final SimpleStringProperty deaths = new SimpleStringProperty("");
     private final SimpleStringProperty recovered = new SimpleStringProperty("");
 
-    public Result() { this("","","",""); };
-
-    public Result(String date, String confirmed, String deaths, String recovered) {
-        setDate(date);
-        setConfirmed(confirmed);
-        setDeaths(deaths);
-        setRecovered(recovered);
-
+    public Result() {
+        this("", "", "", "");
     }
 
-    public String getDate() { return date.get(); }
+    public Result(String date, String confirmed, String deaths, String recovered) {
+        this.setConfirmed(confirmed);
+        this.setDate(date);
+        this.setDeaths(deaths);
+        this.setRecovered(recovered);
+    }
 
-    public void setDate(String date) { this.date.set(date); }
+    public String getDate() {
+        return date.get();
+    }
 
-    public String getConfirmed() { return confirmed.get(); }
+    public SimpleStringProperty dateProperty() {
+        return date;
+    }
 
-    public void setConfirmed(String confirmed) { this.confirmed.set(confirmed); }
+    public String getConfirmed() {
+        return confirmed.get();
+    }
 
-    public String getDeaths() { return deaths.get(); }
+    public SimpleStringProperty confirmedProperty() {
+        return confirmed;
+    }
 
-    public void setDeaths(String deaths) { this.deaths.set(deaths); }
+    public String getDeaths() {
+        return deaths.get();
+    }
 
-    public String getRecovered() { return recovered.get(); }
+    public SimpleStringProperty deathsProperty() {
+        return deaths;
+    }
 
-    public void setRecovered(String recovered) { this.recovered.set(recovered); }
+    public String getRecovered() {
+        return recovered.get();
+    }
+
+    public SimpleStringProperty recoveredProperty() {
+        return recovered;
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
+    }
+
+    public void setConfirmed(String confirmed) {
+        this.confirmed.set(confirmed);
+    }
+
+    public void setDeaths(String deaths) {
+        this.deaths.set(deaths);
+    }
+
+    public void setRecovered(String recovered) {
+        this.recovered.set(recovered);
+    }
 }
