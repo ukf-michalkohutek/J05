@@ -2,6 +2,8 @@ package CoronaStat;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,9 +17,11 @@ import java.util.HashMap;
 
 public class Controller {
     @FXML private TableView<Result> tableView;
+    @FXML private TextField country;
+    @FXML private Text globalText;
 
     @FXML protected void initialize() {
-        downloadData();
+
     }
 
     static HashMap<String, Result> resultHashMap = new HashMap<>();
@@ -27,9 +31,12 @@ public class Controller {
         data.add(res);
     }
 
-    void downloadData() {
+    @FXML public void downloadData() {
+        clearTable();
+        String coun = country.getText();
+
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://covidapi.info/api/v1/country/SVK")).build();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://covidapi.info/api/v1/country/"+coun)).build();
 
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
@@ -37,12 +44,27 @@ public class Controller {
                 .join();
 
         for (String date : resultHashMap.keySet()) addResult(resultHashMap.get(date));
+    }
 
+    static JSONArray globalstats;
+    @FXML public void downloadGlobalData() {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://covidapi.info/api/v1/global")).build();
+
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(Controller::globalJsonParse)
+                .join();
+    }
+
+    private static String globalJsonParse(String response)  {
+        globalstats = new JSONArray("[" + response + "]" );
+        System.out.println(globalstats);
+        System.out.println("nevedel som to dostat do textu :/");
+        return null;
     }
 
     private static String jsonParse(String responseString) {
-
-
         JSONArray results = new JSONArray("[" + responseString + "]");
         JSONArray resultDates = results.getJSONObject(0).getJSONObject("result").names();
 
@@ -51,6 +73,8 @@ public class Controller {
         for (int i = 0; i < resultDates.length(); i++) { resultDatesSorted[i] = resultDates.get(i).toString(); }
 
         Arrays.sort(resultDatesSorted);
+
+        resultHashMap.clear();
 
         for (String res : resultDatesSorted) {
             JSONObject result = results.getJSONObject(0).getJSONObject("result").getJSONObject(res);
@@ -64,6 +88,10 @@ public class Controller {
         }
 
         return null;
+    }
+
+    private void clearTable(){
+        tableView.getItems().clear();
     }
 }
 
