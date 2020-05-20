@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
 <GridPane fx:controller="CoronaStat.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
@@ -29,5 +31,18 @@
             </TableColumn>
         </columns>
     </TableView>
+
+    <HBox spacing = "20" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <TextField fx:id="countryField" promptText="Country" prefWidth="150" style="-fx-font-weight: bold"/>
+        <TextField fx:id="monthField" promptText="Month" prefWidth="150" style="-fx-font-weight: bold"/>
+        <TextField fx:id="dayField" promptText="Day" prefWidth="150" style="-fx-font-weight: bold"/>
+        <Button text="Confirm" onAction="#updateCountry" style="-fx-font-weight: bold; -fx-border-radius: 20;" />
+        <Button text="Global" onAction="#setGlobal" style="-fx-font-weight: bold; -fx-border-radius: 20;" />
+        <Button text="Clear" onAction="#fieldClear" style="-fx-font-weight: bold; -fx-border-radius: 20;" />
+    </HBox>
+
+    <HBox spacing = "20" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
+        <Label fx:id="confirm" text="------------------------------------------------------------" textFill="white" style="-fx-font-weight: bold; -fx-font-size: 15"/>
+    </HBox>
 
 </GridPane>
